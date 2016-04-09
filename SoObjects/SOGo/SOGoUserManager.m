@@ -374,21 +374,29 @@ static Class NSNullK;
                                                 inDomain: domain];
   login = [contactInfos objectForKey: @"c_imaplogin"];
   if (login == nil)
-    {
+  {
       dd = [SOGoDomainDefaults defaultsForDomain: domain];
       if ([dd forceExternalLoginWithEmail])
-        {
+      {
           sd = [SOGoSystemDefaults sharedSystemDefaults];
           if ([sd enableDomainBasedUID])
-            // On multidomain environment we must use uid@domain
-            // for getEmailForUID method
-            login = [NSString stringWithFormat: @"%@@%@", uid, domain];
+          {
+              // On multidomain environment we must use uid@domain
+              // for getEmailForUID method
+              NSRange r = [uid rangeOfString: @"@" options: NSBackwardsSearch];
+              if (r.location == NSNotFound)
+                  login = [NSString stringWithFormat: @"%@@%@", uid, domain];
+              else
+                  login = uid;
+          }
           else
+          {
             login = uid;
+          }
           login = [self getEmailForUID: login];
-        }
+      }
       else
-        login = uid;
+          login = uid;
     }
 
   return login;

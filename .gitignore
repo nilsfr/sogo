@@ -15,6 +15,7 @@ Documentation/*.pdf
 SoObjects/SOGo/SOGo.framework/
 SoObjects/SOGo/derived_src/
 Tests/*/config.py
+Tests/Unit/OpenChange/
 UI/WebServerResources/.bowerrc
 UI/WebServerResources/.sass-cache/
 UI/WebServerResources/bower_components/
@@ -27,6 +28,7 @@ UI/WebServerResources/js/vendor/*.js
 UI/WebServerResources/js/vendor/*.js.map
 UI/WebServerResources/node_modules/
 UI/WebServerResources/scss/.sass-cache/
+.idea/
 config.make
 doc
 tags
